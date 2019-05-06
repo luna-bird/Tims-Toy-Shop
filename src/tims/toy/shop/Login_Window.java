@@ -69,10 +69,10 @@ public class Login_Window extends javax.swing.JFrame {
                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(usr_tf)
-                        .addComponent(pass_tf, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)))
+                        .addComponent(pass_tf, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE))
+                    .addComponent(jButton1))
                 .addGap(103, 103, 103))
         );
         layout.setVerticalGroup(
@@ -100,17 +100,21 @@ public class Login_Window extends javax.swing.JFrame {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         //TEMPORARY HARDCODED LOGIN SYSTEM
-        if((usr_tf.getText().equals("user")) && (pass_tf.getText().equals("pass"))){
+        /*if((usr_tf.getText().equals("user")) && (pass_tf.getText().equals("pass"))){
             TimsToyShop.LogIn();
-            
         }
+        */
+        makeLogin(usr_tf.getText(), pass_tf.getText());
+        
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void pass_tfKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pass_tfKeyPressed
-        System.out.println(evt.getKeyChar());
+        /*System.out.println(evt.getKeyChar());
         if((evt.getKeyChar() == KeyEvent.VK_ENTER) && (usr_tf.getText().equals("user")) && (pass_tf.getText().equals("pass"))){
             TimsToyShop.LogIn();
         }
+        */
+        //makeLogin(usr_tf.getText(), pass_tf.getText());
     }//GEN-LAST:event_pass_tfKeyPressed
 
     /**
@@ -146,6 +150,14 @@ public class Login_Window extends javax.swing.JFrame {
                 new Login_Window().setVisible(true);
             }
         });
+        
+    }
+    
+    public void makeLogin(String user, String pass){
+        String url = "jdbc:mysql://localhost:3306/csit334";
+        
+        SqlInterface sql = new SqlInterface(url, user, pass);
+        sql.makeConnection();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
