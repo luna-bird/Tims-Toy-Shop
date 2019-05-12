@@ -30,6 +30,8 @@ public class Main_Menu extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         dashboard_tab = new javax.swing.JPanel();
         users_tab = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        userTable = new javax.swing.JTable();
         products_tab = new javax.swing.JPanel();
         checkout_tab = new javax.swing.JPanel();
         customers_tab = new javax.swing.JPanel();
@@ -76,15 +78,39 @@ public class Main_Menu extends javax.swing.JFrame {
 
         tab_menu.addTab("Dashboard", dashboard_tab);
 
+        userTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "User ID", "Username", "Password"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(userTable);
+
         javax.swing.GroupLayout users_tabLayout = new javax.swing.GroupLayout(users_tab);
         users_tab.setLayout(users_tabLayout);
         users_tabLayout.setHorizontalGroup(
             users_tabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 932, Short.MAX_VALUE)
+            .addGroup(users_tabLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(470, Short.MAX_VALUE))
         );
         users_tabLayout.setVerticalGroup(
             users_tabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 514, Short.MAX_VALUE)
+            .addGroup(users_tabLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(76, Short.MAX_VALUE))
         );
 
         tab_menu.addTab("Users", users_tab);
@@ -204,6 +230,8 @@ public class Main_Menu extends javax.swing.JFrame {
                 new Main_Menu().setVisible(true);
             }
         });
+        
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -214,8 +242,17 @@ public class Main_Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel products_tab;
     private javax.swing.JTabbedPane tab_menu;
+    private javax.swing.JTable userTable;
     private javax.swing.JPanel users_tab;
     // End of variables declaration//GEN-END:variables
+
+
+
+public void populateUserTable(javax.swing.JTable table){
+
+}
+
 }

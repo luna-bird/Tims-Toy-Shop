@@ -10,6 +10,7 @@ package tims.toy.shop;
  * @author gryff
  */
 public class User {
+    int user_id;
     String username, password;
     boolean isAdmin;
 }

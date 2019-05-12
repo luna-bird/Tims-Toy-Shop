@@ -12,19 +12,21 @@ import java.sql.*;
  */
 public class SqlInterface {
     String url, user, pass;
+    Connection conn;
     
     
     public SqlInterface(String url, String user, String pass){
         this.url = url;
         this.user = user;
-        this.pass = pass;
+        this.pass = pass;   
+        
     }
     
     public void makeConnection(){
         try{
              Class.forName("com.mysql.cj.jdbc.Driver");  
             
-             Connection conn = DriverManager.getConnection(url, user, pass);
+             conn = DriverManager.getConnection(url, user, pass);
              System.out.println("Successfully connected");
         }
         catch(Exception e){
@@ -32,6 +34,29 @@ public class SqlInterface {
             System.out.println(e);
         }
        
+    }
+    
+    public boolean makeLogin(String user, String pass){
+
+        try{
+            Statement statement = conn.createStatement();
+            System.out.println("created connection");
+            //ResultSet result = statement.executeQuery("SELECT * FROM USER WHERE \"username\" = "+user+";");
+            ResultSet result = statement.executeQuery("SELECT * FROM USER WHERE username='"+user+"';");
+            while(result.next()){
+                if(result.getString("password").equals(pass)){
+                    return true;
+                }
+            }
+            //System.out.println(result);
+            
+        }
+        catch(Exception e){
+            System.out.println(e);
+         
+        }
+        
+        return false;
     }
 
     

@@ -104,7 +104,7 @@ public class Login_Window extends javax.swing.JFrame {
             TimsToyShop.LogIn();
         }
         */
-        makeLogin(usr_tf.getText(), pass_tf.getText());
+        getCredentials(usr_tf.getText(), pass_tf.getText(), TimsToyShop.getSql());
         
     }//GEN-LAST:event_jButton1MouseClicked
 
@@ -151,14 +151,16 @@ public class Login_Window extends javax.swing.JFrame {
             }
         });
         
+        
     }
     
-    public void makeLogin(String user, String pass){
-        String url = "jdbc:mysql://localhost:3306/csit334";
-        
-        SqlInterface sql = new SqlInterface(url, user, pass);
-        sql.makeConnection();
+    public void getCredentials(String user, String pass, SqlInterface sql){
+        if(sql.makeLogin(user, pass)){
+            TimsToyShop.LogIn();
+        }
     }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
